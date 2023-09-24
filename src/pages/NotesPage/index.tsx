@@ -14,8 +14,14 @@ export default function NotesPage({ navigation }: NotesPageScreenProp): React.Re
     const notes = useQuery(Note);
     
     function _renderNote({ item }: { item: Note }): React.ReactElement {
+        const noteParams = {
+            _id: item._id.toHexString(),
+            title: item.title,
+            content: item.content,
+        };
+        
         return (
-            <NoteContainer onPress={() => null}>
+            <NoteContainer onPress={() => navigation.navigate('NotePage', noteParams)}>
                 <NoteTitle>{item.title}</NoteTitle>
                 <NoteContent>{item.content}</NoteContent>
             </NoteContainer>
