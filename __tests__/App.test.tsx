@@ -1,17 +1,21 @@
-/**
- * @format
- */
-
-import 'react-native';
-import React from 'react';
+import Realm from 'realm';
+import { it, afterAll } from '@jest/globals';
+import { render, renderHook, waitFor } from '@testing-library/react-native';
 import App from '../App';
+import RealmContext from '../src/services/database';
 
-// Note: import explicitly to use the types shiped with jest.
-import {it} from '@jest/globals';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+afterAll(() => {
+  const wrapper = ({ children }: { children: JSX.Element }) =>(
+    <RealmContext.RealmProvider>{children}</RealmContext.RealmProvider>
+  );
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+  const { result } = renderHook(() => RealmContext.useRealm(), { wrapper });
+
+  result.current.close();
+  Realm.clearTestState();
+});
+
+it('renders correctly', async () => {
+  await waitFor(() => render(<App />));
 });
