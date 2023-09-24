@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components';
 import NotesPage from './pages/NotesPage';
+import NewNotePage from './pages/NewNotePage';
 import { StackNavigatorParamList } from './types';
 
 
@@ -25,6 +26,11 @@ export default function Router(): React.ReactElement {
                     name='NotesPage'
                     component={NotesPage}
                     options={{ title: 'Minhas anotatações' }}
+                />
+                <Stack.Screen
+                    name='NewNotePage'
+                    component={NewNotePage}
+                    options={{ title: 'Nova anotação' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

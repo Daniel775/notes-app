@@ -15,7 +15,12 @@ declare module 'styled-components/native' {
 
 export type StackNavigatorParamList = {
     NotesPage: undefined,
+    NewNotePage: undefined,
 };
+
+export type NewNotePageScreenProp = NativeStackScreenProps<StackNavigatorParamList, 'NewNotePage'>;
+
+export type NewNotePageRouteProp = NativeStackNavigationProp<StackNavigatorParamList, 'NewNotePage'>;
 
 export type NotesPageScreenProp = NativeStackScreenProps<StackNavigatorParamList, 'NotesPage'>;
 
