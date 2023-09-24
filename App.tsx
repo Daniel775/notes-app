@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
+import SplashScreen from 'react-native-splash-screen';
 import RealmContext from './src/services/database';
 import Router from './src/routes';
 
@@ -14,6 +16,10 @@ const appTheme: DefaultTheme = {
 
 
 export default function App(): React.ReactElement {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <ThemeProvider theme={appTheme}>
       <RealmContext.RealmProvider>
