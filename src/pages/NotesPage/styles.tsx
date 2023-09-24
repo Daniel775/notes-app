@@ -6,7 +6,7 @@ export const List = styled.FlatList.attrs({
 	contentContainerStyle: { flexGrow: 1 },
 	columnWrapperStyle: {
 		flex:1,
-		justifyContent: 'space-around',
+		justifyContent: 'space-between',
 	},
     numColumns: 2,
 })``;
@@ -18,8 +18,9 @@ export const NoteContainer = styled.TouchableOpacity`
     height: 250px;
     margin: 10px 5px;
     border-radius: 10px;
-    flex: 1;
+    flex: 0.5;
     overflow: hidden;
+    align-self: flex-end;
 `;
 
 
