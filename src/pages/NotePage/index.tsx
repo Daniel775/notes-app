@@ -28,24 +28,7 @@ export default function NotePage({
 	const [title, setTitle] = useState(route.params.title);
 	const [content, setContent] = useState(route.params.content);
 
-	useFocusEffect(
-		useCallback(() => {
-			navigation.setOptions({
-				headerLeft: props => (
-					<HeaderBackButton {...props} onPress={updateNote} />
-				),
-			});
-
-			const subscription = BackHandler.addEventListener(
-				'hardwareBackPress',
-				updateNote,
-			);
-
-			return () => subscription.remove();
-		}, [title, content, navigation]),
-	);
-
-	function updateNote() {
+	const updateNote = useCallback(() => {
 		if (!title && !content) {
 			navigation.goBack();
 			return true;
@@ -57,8 +40,29 @@ export default function NotePage({
 		});
 
 		navigation.goBack();
+
 		return true;
-	}
+	}, [navigation, realm, note, title, content]);
+
+	const BackButton = useCallback(
+		() => <HeaderBackButton onPress={updateNote} />,
+		[updateNote],
+	);
+
+	useFocusEffect(
+		useCallback(() => {
+			navigation.setOptions({
+				headerLeft: BackButton,
+			});
+
+			const subscription = BackHandler.addEventListener(
+				'hardwareBackPress',
+				updateNote,
+			);
+
+			return () => subscription.remove();
+		}, [navigation, updateNote, BackButton]),
+	);
 
 	function deleteNote() {
 		realm.write(() => {

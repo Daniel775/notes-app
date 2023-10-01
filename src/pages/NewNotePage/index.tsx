@@ -13,24 +13,7 @@ export default function NewNotePage({
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 
-	useFocusEffect(
-		useCallback(() => {
-			navigation.setOptions({
-				headerLeft: props => (
-					<HeaderBackButton {...props} onPress={registerNote} />
-				),
-			});
-
-			const subscription = BackHandler.addEventListener(
-				'hardwareBackPress',
-				registerNote,
-			);
-
-			return () => subscription.remove();
-		}, [title, content, navigation]),
-	);
-
-	function registerNote() {
+	const registerNote = useCallback(() => {
 		if (!title && !content) {
 			navigation.goBack();
 			return true;
@@ -39,9 +22,31 @@ export default function NewNotePage({
 		realm.write(() => {
 			realm.create('Note', Note.generate(title, content));
 		});
+
 		navigation.goBack();
+
 		return true;
-	}
+	}, [navigation, realm, title, content]);
+
+	const BackButton = useCallback(
+		() => <HeaderBackButton onPress={registerNote} />,
+		[registerNote],
+	);
+
+	useFocusEffect(
+		useCallback(() => {
+			navigation.setOptions({
+				headerLeft: BackButton,
+			});
+
+			const subscription = BackHandler.addEventListener(
+				'hardwareBackPress',
+				registerNote,
+			);
+
+			return () => subscription.remove();
+		}, [navigation, registerNote, BackButton]),
+	);
 
 	return (
 		<Container>
