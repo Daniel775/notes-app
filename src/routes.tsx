@@ -7,38 +7,37 @@ import NewNotePage from './pages/NewNotePage';
 import NotePage from './pages/NotePage';
 import { StackNavigatorParamList } from './types';
 
-
 const Stack = createNativeStackNavigator<StackNavigatorParamList>();
 
 export default function Router(): React.ReactElement {
-    const theme = useTheme();
+	const theme = useTheme();
 
-    return (
-        <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName='NotesPage'
-                screenOptions={{
-                    headerStyle: { backgroundColor: theme.primary },
-                    headerTintColor: theme.details,
-                    contentStyle: { backgroundColor: theme.background}
-                }}
-            >
-                <Stack.Screen
-                    name='NotesPage'
-                    component={NotesPage}
-                    options={{ title: 'Minhas anotatações' }}
-                />
-                <Stack.Screen
-                    name='NewNotePage'
-                    component={NewNotePage}
-                    options={{ title: 'Nova anotação' }}
-                />
-                <Stack.Screen
-                    name='NotePage'
-                    component={NotePage}
-                    options={{ title: 'Editar anotação' }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+	return (
+		<NavigationContainer>
+			<Stack.Navigator
+				initialRouteName="NotesPage"
+				screenOptions={{
+					headerStyle: { backgroundColor: theme.primary },
+					headerTintColor: theme.details,
+					contentStyle: { backgroundColor: theme.background },
+				}}
+			>
+				<Stack.Screen
+					name="NotesPage"
+					component={NotesPage}
+					options={{ title: 'Minhas anotatações' }}
+				/>
+				<Stack.Screen
+					name="NewNotePage"
+					component={NewNotePage}
+					options={{ title: 'Nova anotação' }}
+				/>
+				<Stack.Screen
+					name="NotePage"
+					component={NotePage}
+					options={{ title: 'Editar anotação' }}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
