@@ -41,3 +41,17 @@ export const NoteContent = styled.Text.attrs({
     font-size: 15px;
     margin: 5px 10px;
 `;
+
+export const EmptyListContainer = styled.View`
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	margin-top: 40px;
+`;
+
+export const EmptyListText = styled.Text`
+	color: ${props => props.theme.primary};
+	font-size: 20px;
+	text-align: center;
+`;
