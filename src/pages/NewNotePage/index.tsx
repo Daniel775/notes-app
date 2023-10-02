@@ -1,7 +1,10 @@
 import { useState, useCallback } from 'react';
 import { BackHandler } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { HeaderBackButton } from '@react-navigation/elements';
+import {
+	HeaderBackButton,
+	HeaderBackButtonProps,
+} from '@react-navigation/elements';
 import RealmContext, { Note } from '../../services/database';
 import { NewNotePageScreenProp } from '../../types';
 import { Container, TitleInput, ContentInput } from './styles';
@@ -29,7 +32,9 @@ export default function NewNotePage({
 	}, [navigation, realm, title, content]);
 
 	const BackButton = useCallback(
-		() => <HeaderBackButton onPress={registerNote} />,
+		(props: HeaderBackButtonProps) => (
+			<HeaderBackButton {...props} onPress={registerNote} />
+		),
 		[registerNote],
 	);
 

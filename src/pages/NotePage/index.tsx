@@ -3,7 +3,10 @@ import { BackHandler, View } from 'react-native';
 import Realm from 'realm';
 import { useTheme } from 'styled-components/native';
 import { useFocusEffect } from '@react-navigation/native';
-import { HeaderBackButton } from '@react-navigation/elements';
+import {
+	HeaderBackButton,
+	HeaderBackButtonProps,
+} from '@react-navigation/elements';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import RealmContext, { Note } from '../../services/database';
 import { NotePageScreenProp } from '../../types';
@@ -45,7 +48,9 @@ export default function NotePage({
 	}, [navigation, realm, note, title, content]);
 
 	const BackButton = useCallback(
-		() => <HeaderBackButton onPress={updateNote} />,
+		(props: HeaderBackButtonProps) => (
+			<HeaderBackButton {...props} onPress={updateNote} />
+		),
 		[updateNote],
 	);
 
