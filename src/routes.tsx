@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import NotesPage from './pages/NotesPage';
 import NewNotePage from './pages/NewNotePage';
 import NotePage from './pages/NotePage';

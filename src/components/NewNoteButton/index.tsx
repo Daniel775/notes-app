@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import { NewNotePageRouteProp } from '../../types';
 import { Container } from './styles';
 

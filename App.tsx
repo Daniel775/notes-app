@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import { ThemeProvider, DefaultTheme } from 'styled-components';
+import { ThemeProvider, DefaultTheme } from 'styled-components/native';
 import SplashScreen from 'react-native-splash-screen';
 import RealmContext from './src/services/database';
 import Router from './src/routes';

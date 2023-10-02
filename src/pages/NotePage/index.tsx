@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { BackHandler, View } from 'react-native';
 import Realm from 'realm';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import { useFocusEffect } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
