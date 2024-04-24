@@ -53,3 +53,20 @@ export type NotesPageRouteProp = NativeStackNavigationProp<
 	StackNavigatorParamList,
 	'NotesPage'
 >;
+
+export interface User {
+	id: string;
+	name: string;
+	email: string;
+	image: string;
+	token: string;
+}
+
+export interface RefreshData {
+	token: string;
+}
+
+export interface AuthenticationService {
+	authenticate: (code: string) => Promise<User>;
+	restoreSession: (code: string) => Promise<RefreshData>;
+}

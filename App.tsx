@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { ThemeProvider, DefaultTheme } from 'styled-components/native';
 import SplashScreen from 'react-native-splash-screen';
+import { AuthProvider } from './src/contexts/authContent';
 import RealmContext from './src/services/database';
 import Router from './src/routes';
 
@@ -26,7 +27,9 @@ export default function App(): React.ReactElement {
 					translucent
 					barStyle="light-content"
 				/>
-				<Router />
+				<AuthProvider>
+					<Router />
+				</AuthProvider>
 			</RealmContext.RealmProvider>
 		</ThemeProvider>
 	);

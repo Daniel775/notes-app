@@ -32,6 +32,7 @@ local.properties
 *.hprof
 .cxx/
 *.keystore
+google-services.json
 !debug.keystore
 
 # node.js
