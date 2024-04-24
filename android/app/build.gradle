@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.simplenotes"
+    namespace "com.alph.simpleNotes"
     defaultConfig {
-        applicationId "com.simplenotes"
+        applicationId "com.alph.simpleNotes"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

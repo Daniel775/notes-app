@@ -1,4 +1,4 @@
-package com.simplenotes;
+package com.alph.simpleNotes;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
