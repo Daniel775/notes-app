@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components/native';
 import NotesPage from './pages/NotesPage';
 import NewNotePage from './pages/NewNotePage';
 import NotePage from './pages/NotePage';
-import { useAuth } from './contexts/authContent';
 import { StackNavigatorParamList } from './types';
 
 const Stack = createNativeStackNavigator<StackNavigatorParamList>();
 
 export default function Router(): React.ReactElement {
-	const auth = useAuth();
 	const theme = useTheme();
-
-	useEffect(() => {
-		auth.login();
-	}, []);
 
 	return (
 		<NavigationContainer>

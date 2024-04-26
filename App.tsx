@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { ThemeProvider, DefaultTheme } from 'styled-components/native';
 import SplashScreen from 'react-native-splash-screen';
-import { AuthProvider } from './src/contexts/authContent';
-import RealmContext from './src/services/database';
+import { AppProvider, UserProvider, RealmProvider } from '@realm/react';
+import LoginPage from './src/pages/LoginPage';
+import { Note } from './src/services/database';
 import Router from './src/routes';
 
 const appTheme: DefaultTheme = {
@@ -21,16 +22,28 @@ export default function App(): React.ReactElement {
 
 	return (
 		<ThemeProvider theme={appTheme}>
-			<RealmContext.RealmProvider>
-				<StatusBar
-					backgroundColor="transparent"
-					translucent
-					barStyle="light-content"
-				/>
-				<AuthProvider>
-					<Router />
-				</AuthProvider>
-			</RealmContext.RealmProvider>
+			<AppProvider id="notes-app-cnyvm">
+				<UserProvider fallback={LoginPage}>
+					<RealmProvider
+						schema={[Note]}
+						sync={{
+							flexible: true,
+							initialSubscriptions: {
+								update(subs, realm) {
+									subs.add(realm.objects(Note));
+								},
+							},
+						}}
+					>
+						<StatusBar
+							backgroundColor="transparent"
+							translucent
+							barStyle="light-content"
+						/>
+						<Router />
+					</RealmProvider>
+				</UserProvider>
+			</AppProvider>
 		</ThemeProvider>
 	);
 }

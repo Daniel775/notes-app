@@ -1,5 +1,6 @@
+import { useQuery } from '@realm/react';
 import NewNoteButton from '../../components/NewNoteButton';
-import RealmContext, { Note } from '../../services/database';
+import { Note } from '../../services/database';
 import { NotesPageScreenProp } from '../../types';
 import {
 	List,
@@ -13,7 +14,6 @@ import {
 export default function NotesPage({
 	navigation,
 }: NotesPageScreenProp): React.ReactElement {
-	const { useQuery } = RealmContext;
 	const notes = useQuery(Note);
 
 	function _renderEmptyComponent() {

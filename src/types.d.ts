@@ -4,6 +4,10 @@ import {
 	NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 
+declare module '@env' {
+	export const APP_URI: string;
+}
+
 declare module 'styled-components/native' {
 	export interface DefaultTheme {
 		primary: string;
@@ -19,8 +23,8 @@ export type StackNavigatorParamList = {
 	NewNotePage: undefined;
 	NotePage: {
 		_id: string;
-		title: string;
-		content: string;
+		title?: string;
+		content?: string;
 	};
 };
 

@@ -7,8 +7,9 @@ import {
 	HeaderBackButton,
 	HeaderBackButtonProps,
 } from '@react-navigation/elements';
+import { useObject, useRealm } from '@realm/react';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
-import RealmContext, { Note } from '../../services/database';
+import { Note } from '../../services/database';
 import { NotePageScreenProp } from '../../types';
 import {
 	Container,
@@ -23,11 +24,8 @@ export default function NotePage({
 	route,
 }: NotePageScreenProp): React.ReactElement {
 	const theme = useTheme();
-	const realm = RealmContext.useRealm();
-	const note = RealmContext.useObject(
-		Note,
-		new Realm.BSON.ObjectId(route.params._id),
-	);
+	const realm = useRealm();
+	const note = useObject(Note, new Realm.BSON.ObjectId(route.params._id));
 	const [title, setTitle] = useState(route.params.title);
 	const [content, setContent] = useState(route.params.content);
 

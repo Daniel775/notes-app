@@ -1,11 +1,10 @@
 import axios from 'axios';
+import { APP_URI } from '@env';
 import { AuthenticationService, RefreshData, User } from '../types';
 
 class AuthService implements AuthenticationService {
-	private uri: string = process.env.API_URI as string;
-
 	authenticate = async (code: string) => {
-		const response = await axios.post<User>(`${this.uri}/authentication`, {
+		const response = await axios.post<User>(`${APP_URI}/authentication`, {
 			code: code,
 		});
 
@@ -13,7 +12,7 @@ class AuthService implements AuthenticationService {
 	};
 
 	restoreSession = async (code: string) => {
-		const response = await axios.get<RefreshData>(`${this.uri}/refresh`, {
+		const response = await axios.get<RefreshData>(`${APP_URI}/refresh`, {
 			headers: { Authorization: `Bearer ${code}` },
 		});
 

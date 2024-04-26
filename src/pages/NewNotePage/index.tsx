@@ -5,14 +5,16 @@ import {
 	HeaderBackButton,
 	HeaderBackButtonProps,
 } from '@react-navigation/elements';
-import RealmContext, { Note } from '../../services/database';
+import { useUser, useRealm } from '@realm/react';
+import { Note } from '../../services/database';
 import { NewNotePageScreenProp } from '../../types';
 import { Container, TitleInput, ContentInput } from './styles';
 
 export default function NewNotePage({
 	navigation,
 }: NewNotePageScreenProp): React.ReactElement {
-	const realm = RealmContext.useRealm();
+	const realm = useRealm();
+	const user = useUser();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 
@@ -23,13 +25,13 @@ export default function NewNotePage({
 		}
 
 		realm.write(() => {
-			realm.create('Note', Note.generate(title, content));
+			realm.create('Note', Note.generate(title, content, user.id));
 		});
 
 		navigation.goBack();
 
 		return true;
-	}, [navigation, realm, title, content]);
+	}, [navigation, realm, title, content, user.id]);
 
 	const BackButton = useCallback(
 		(props: HeaderBackButtonProps) => (
