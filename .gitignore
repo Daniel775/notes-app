@@ -33,6 +33,7 @@ local.properties
 .cxx/
 *.keystore
 google-services.json
+ios/GoogleService-Info.plist
 !debug.keystore
 
 # node.js
