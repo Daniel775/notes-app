@@ -1,9 +1,7 @@
 name: "Build iOS app"
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch
 
 jobs:
   build_with_signing:
@@ -60,6 +58,11 @@ jobs:
         run: |
           cd ios
           xcodebuild clean -workspace simpleNotes.xcworkspace -scheme simpleNotes
+
+      - name: Decode google-services.json
+        env:
+          GOOGLE_SERVICE_IOS: ${{ secrets.GOOGLE_SERVICE_IOS }}
+        run: echo $GOOGLE_SERVICE_IOS > ios/GoogleService-Info.plist
 
       - name: install npm dependencies
         run: |
