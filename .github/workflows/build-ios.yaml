@@ -6,6 +6,8 @@ on:
 jobs:
   build_with_signing:
     runs-on: macos-latest
+    env:
+      APP_URI: ${{ secrets.APP_SERVER_URI }}
     steps:
       - name: check Xcode version
         run: /usr/bin/xcodebuild -version
